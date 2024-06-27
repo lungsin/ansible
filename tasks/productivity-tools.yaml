@@ -24,7 +24,6 @@
   with_items:
     - kubernetes-cli
     - awscli
-    - kubectx
     - terraform
   ignore_errors: yes
   tags:

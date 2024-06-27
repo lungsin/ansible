@@ -14,8 +14,10 @@
         - install
         - core
   tasks:
-    - include: tasks/ssh.yml
-    - include: tasks/core-setup.yml
-    - include: tasks/zsh-setup.yml
-    - include: tasks/dotfiles.yml
-    - include: tasks/productivity-tools.yml
+    - import_tasks: tasks/ssh.yaml
+    - import_tasks: tasks/core-setup.yaml
+    - import_tasks: tasks/dotfiles.yaml
+    - import_tasks: tasks/zsh-setup.yaml
+    - import_tasks: tasks/productivity-tools.yaml
+    - import_tasks: tasks/rust.yaml
+    - import_tasks: tasks/docker.yaml

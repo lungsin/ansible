@@ -1,6 +1,6 @@
 - name: Installing stow using brew
   community.general.homebrew:
-    name: "powerlevel10k"
+    name: "stow"
     state: present
   ignore_errors: yes
   tags:

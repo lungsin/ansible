@@ -1,0 +1,26 @@
+- name: Download docker installation script
+  shell: curl -fsSL https://get.docker.com -o get-docker.sh
+  when: ansible_facts['os_family'] == "Debian"
+  tags: 
+  - install
+  - docker
+- name: Install docker
+  become: true
+  shell: sh get-docker.sh
+  when: ansible_facts['os_family'] == "Debian"
+  tags: 
+  - install
+  - docker
+- name: Cleanup docker installation script
+  shell: rm get-docker.sh
+  when: ansible_facts['os_family'] == "Debian"
+  tags: 
+  - install
+  - docker
+- name: Docker post-installation
+  become: true
+  shell: usermod -aG docker $USER
+  when: ansible_facts['os_family'] == "Debian"
+  tags: 
+  - install
+  - docker
