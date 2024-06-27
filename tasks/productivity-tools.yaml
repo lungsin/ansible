@@ -1,0 +1,32 @@
+- name: Generic productivity
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - wget
+    - fzf
+    - lazygit
+    - nvim
+    - xclip
+    - ripgrep
+    - go
+    - pyenv
+    - node
+  ignore_errors: yes
+  tags:
+    - install
+    - productivity
+
+- name: Install work related tools
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - kubernetes-cli
+    - awscli
+    - kubectx
+    - terraform
+  ignore_errors: yes
+  tags:
+    - install
+    - productivity
