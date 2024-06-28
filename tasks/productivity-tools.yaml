@@ -10,7 +10,6 @@
     - xclip
     - ripgrep
     - go
-    - pyenv
     - node
   ignore_errors: yes
   tags:
