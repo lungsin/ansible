@@ -11,6 +11,7 @@
     - ripgrep
     - go
     - node
+    - git
   ignore_errors: yes
   tags:
     - install
@@ -28,3 +29,10 @@
   tags:
     - install
     - productivity
+
+- name: Install bun 
+  shell: curl -fsSL https://bun.sh/install | bash
+  tags: 
+  - install
+  - productivity
+-
