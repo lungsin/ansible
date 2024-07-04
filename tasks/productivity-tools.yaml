@@ -12,6 +12,9 @@
     - go
     - node
     - git
+    - protobuf
+    - protoc-gen-go
+    - protoc-gen-go-grpc
   ignore_errors: yes
   tags:
     - install
@@ -30,9 +33,9 @@
     - install
     - productivity
 
-- name: Install bun 
-  shell: curl -fsSL https://bun.sh/install | bash
+- name: Install gogoproto for work related
+  shell: GO110MODULE=off go get github.com/gogo/protobuf/proto github.com/gogo/protobuf/protoc-gen-gogofast
   tags: 
   - install
   - productivity
--
+
