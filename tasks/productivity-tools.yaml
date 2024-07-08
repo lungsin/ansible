@@ -15,6 +15,7 @@
     - protobuf
     - protoc-gen-go
     - protoc-gen-go-grpc
+    - mockery
   ignore_errors: yes
   tags:
     - install
