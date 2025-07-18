@@ -1,0 +1,37 @@
+- name: Install ZSH
+  become: true
+  apt: name=zsh
+  when: ansible_facts['os_family'] == "Debian"
+  tags: &tags_for_zsh_tasks [ 'install', 'productivity', 'dotfiles', 'zsh' ]
+
+- name: Change shell to zsh
+  become: true
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    shell: /bin/zsh
+  tags: *tags_for_zsh_tasks
+
+- name: Check that the somefile.conf exists
+  stat:
+    path: /home/klungs/.oh-my-zsh
+  register: oh_my_stats
+  tags: *tags_for_zsh_tasks
+
+- name: Oh-My-Zsh
+  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer
+  tags: *tags_for_zsh_tasks
+  when: oh_my_stats.stat.exists == False
+  become_user: klungs
+
+- name: Install zsh-autosuggestions
+  ansible.builtin.git:
+    repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
+    dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
+  tags: *tags_for_zsh_tasks
+
+- name: Install powerlevel10k using brew
+  community.general.homebrew:
+    name: "powerlevel10k"
+    state: present
+  ignore_errors: yes
+  tags: *tags_for_zsh_tasks
